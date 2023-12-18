@@ -11,7 +11,7 @@ lint:
 
 .PHONY: test 
 test:
-	$(DOCKER_EXEC) "python -m unittest discover tests -v"
+	$(DOCKER_EXEC) "python -m unittest -v"
 
 dc_build:
 	$(DOCKER_COMPOSE_BIN) down && $(DOCKER_COMPOSE_BIN) build
