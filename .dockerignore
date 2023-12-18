@@ -14,5 +14,3 @@ backend/*/*/*/__pycache__/
 .venv/
 venv/
 
-#Other
-notes.md
