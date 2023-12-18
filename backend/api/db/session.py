@@ -6,9 +6,10 @@ from api.core.config import Settings
 
 SQLALCHEMY_DATABASE_URL = Settings.DATABASE_URL
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def get_db() -> Generator:   #new
+
+def get_db() -> Generator:  # new
     try:
         db = SessionLocal()
         yield db
