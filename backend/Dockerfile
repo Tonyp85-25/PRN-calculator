@@ -19,6 +19,9 @@ RUN python -m venv /py && \
         then /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
     rm -rf /tmp && \
+    if [ $DEV = "false" ]; \
+        then rm -rf ./api/tests; \
+    fi && \
     apk del .tmp-build-deps && \
     adduser \
     # Do not assign password

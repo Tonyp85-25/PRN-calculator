@@ -28,9 +28,10 @@ def override_get_db():
 
 
 app = FastAPI()
-include_router(app)
+
 Base.metadata.create_all(bind=engine)
 app.dependency_overrides[get_db] = override_get_db
+include_router(app)
 client = TestClient(app)
 
 
