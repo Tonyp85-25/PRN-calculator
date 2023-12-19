@@ -38,6 +38,7 @@ class CalculationCreate(BaseModel):
 class CalculationResult(BaseModel):
     result: str = Field(example="4")
 
+
 class CalculationFull(BaseModel):
     expression: CalculationExpression
     result: CalculationResult

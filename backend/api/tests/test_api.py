@@ -16,21 +16,26 @@ engine = create_engine(
     poolclass=StaticPool,
 )
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
 def override_get_db():
     try:
         db = TestingSessionLocal()
         yield db
     finally:
         db.close()
+
+
 app = FastAPI()
 include_router(app)
 Base.metadata.create_all(bind=engine)
 client = TestClient(app)
 
-class CalculateApiTest(unittest.TestCase):
 
+class CalculateApiTest(unittest.TestCase):
     def setUp(self):
         self.client = client
+
     def test_send_add(self):
         response = self.client.post("/calculate", json={"expression": "2 2 +"})
         self.assertEqual(200, response.status_code)
@@ -43,6 +48,3 @@ class CalculateApiTest(unittest.TestCase):
     def test_no_numbers_sent(self):
         response = self.client.post("/calculate", json={"expression": "* +"})
         self.assertEqual(422, response.status_code)
-  
-
-   

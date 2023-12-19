@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
@@ -18,9 +17,12 @@ def create_calculation(
     calculation = create_new_calculation(session, calculation)
     return {"result": calculation.result}
 
+
 @router.get("/export", response_class=FileResponse)
 async def export_calculations(session: Session = Depends(get_db)):
     calculations = get_all_calculations(session)
 
-    write_csv_file(calculations,"./calculations.csv")
-    return FileResponse("./calculations.csv", media_type="text/csv", filename="calculations.csv")
+    write_csv_file(calculations, "./calculations.csv")
+    return FileResponse(
+        "./calculations.csv", media_type="text/csv", filename="calculations.csv"
+    )
