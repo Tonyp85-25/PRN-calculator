@@ -14,3 +14,7 @@ def create_new_calculation(session: Session, calculation: CalculationCreate):
     session.commit()
     session.refresh(calculation)
     return calculation
+
+def get_all_calculations(session: Session):
+    calculations = session.query(Calculation).all()
+    return calculations

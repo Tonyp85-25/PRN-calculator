@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from api.db.base_class import Base
 from api.db.session import engine
 from api.core.config import settings
