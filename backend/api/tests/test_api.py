@@ -5,6 +5,7 @@ from sqlalchemy.pool import StaticPool
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from api.db.session import get_db
 from api.db.base_class import Base
 from main import include_router
 
@@ -29,6 +30,7 @@ def override_get_db():
 app = FastAPI()
 include_router(app)
 Base.metadata.create_all(bind=engine)
+app.dependency_overrides[get_db] = override_get_db
 client = TestClient(app)
 
 
