@@ -2,17 +2,17 @@
 
 Provides an arithmetic calculator using this type of notation via a web API based on FASTAPI with two routes:
 
-- one that returns the result in JSON
-- one that export in a csv file all the calculations made 
+- one that returns the result in JSON (POST, /calculate, body: {expression:string})
+- one that export in a csv file all the calculations made (GET, /export)
 
 ## .env file
 
-In both production and dev environment, you  will need to create a `.env` file besides at the root of this project. You can create one copying `.env.dist` file and filling it with your data.
+In both production and dev environment, you  will need to create a `.env` file at the root of this project. You can create one copying `.env.dist` file and filling it with your data.
 
 ## Development
 
 - Set up env file
-- Simply use `docker compose up` for the stack with dev dependencies (black and flake8 fo r the backend).
+- Simply use `docker compose up` for the stack with dev dependencies (black and flake8 for the backend).
 
 ## Production
 
